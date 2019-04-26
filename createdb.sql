@@ -16,8 +16,6 @@
 --     There is no ProductionCompany having the same name.
 --     Pictures are all belong to IMDBPersonal if IsProfile is 0
 -- table schemas
-
-
 create table IMDBUser(
     IMDBID number PRIMARY KEY,
     Email varchar(100) NOT NULL UNIQUE,
@@ -73,7 +71,6 @@ create table Marry(
         PRIMARY KEY (IMDBPerson1, IMDBPerson2)
 );
 /
--- problem
 create table Actor(
     ID number PRIMARY KEY,
     CONSTRAINT fk_IMDBPerson
@@ -81,8 +78,6 @@ create table Actor(
         REFERENCES IMDBPerson(ID)
 );
 /
-
--- problem
 create table Director(
     ID number PRIMARY KEY,
     CONSTRAINT fk_IMDBPerson_Director
@@ -168,7 +163,6 @@ create table Episode(
         PRIMARY KEY (TVSeriesID, NumberOfEp)
 );
 /
-
 create table GuestActor(
     Role varchar(50) NOT NULL,
     Charactor varchar(50) NOT NULL,
@@ -187,7 +181,6 @@ create table GuestActor(
         PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp, Charactor)
 );
 /
-
 create table RegularActor(
     Role varchar(50) NOT NULL,
     Charactor varchar(50) NOT NULL,
@@ -205,7 +198,6 @@ create table RegularActor(
         PRIMARY KEY (ActorID, TVSeriesID, Charactor)
 );
 /
-
 create table MovieActor(
     Role  varchar(50) NOT NULL,
     Charactor varchar(50) NOT NULL,
@@ -223,8 +215,6 @@ create table MovieActor(
         PRIMARY KEY (ActorID, MovieID, Charactor)
 );
 /
-
-
 create table Picture(
     PictureUrl number PRIMARY KEY,
     AuthorId number NOT NULL,
@@ -236,7 +226,6 @@ create table Picture(
         REFERENCES IMDBUser(IMDBID)
 );
 /
-
 create table ProfilePicture(
     PictureID number NOT NULL,
     ProfileID number NOT NULL,
@@ -289,7 +278,6 @@ create table TVSerieRate(
         REFERENCES TVSeries(ID)
 );
 /
-
 create table Reviews(
     ID number PRIMARY KEY,
     PublishDate date DEFAULT sysdate NOT NULL,
@@ -304,7 +292,6 @@ create table Reviews(
         REFERENCES IMDBUser(IMDBID)
 );
 /
-
 create table VoteHelpful(
     ReviewID number NOT NUll,
     AuthorID number NOT NULL,
@@ -317,7 +304,6 @@ create table VoteHelpful(
         REFERENCES IMDBUser(IMDBID)
 );
 /
-
 create table VoteNonHelpful(
     ReviewID number NOT NUll,
     AuthorID number NOT NULL,
@@ -330,7 +316,6 @@ create table VoteNonHelpful(
         REFERENCES IMDBUser(IMDBID)
 );
 /
-
 create table Comments(
     ReviewID number NOT NUll,
     AuthorID number NOT NULL,
@@ -345,14 +330,12 @@ create table Comments(
         REFERENCES IMDBUser(IMDBID)
 );
 /
-
 create table Awards(
     Year number NOT NUll,
     Event varchar(50) NOT NUll,
     CONSTRAINT pk_Awards PRIMARY KEY (Year, Event)
 );
 /
-
 create table Nominations(
     MovieID number NOT NULL,
     Category varchar(50),
