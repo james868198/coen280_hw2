@@ -59,7 +59,7 @@ create table Guardian(
 create table Marry(
     IMDBPerson1 number NOT NULL,
     IMDBPerson2 number NOT NULL,
-    Year date NOT NULL,
+    Year date NOT NULL CHECK(Year<2020),
     CONSTRAINT fk_IMDBPerson1
         FOREIGN KEY(IMDBPerson1)
         REFERENCES IMDBPerson(ID)
@@ -80,7 +80,7 @@ create table Movie(
     SerialNumber number PRIMARY KEY,
     Title varchar(50) NOT NULL,
     ProductionCost number,
-    ReleasedYear date NOT NULL,
+    ReleasedYear number NOT NULL CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
     DirectorID number NOT NULL,
     ConstractNumber number NOT NULL,
     ProductionCompanyName varchar(50) NOT NULL,
@@ -127,7 +127,7 @@ create table TVSeries(
     Name varchar(50) NOT NULL,
     TVNetworks varchar(50) NOT NULL,
     ProductionCost number,
-    ReleasedYear date NOT NULL,
+    ReleasedYear date NOT NULL CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
     ConstractNumber number NOT NULL,
     ProductionCompanyName varchar(50) NOT NULL,
     CONSTRAINT fk_ProductionCompany_TVSeries
@@ -314,7 +314,7 @@ create table Comments(
 );
 /
 create table Awards(
-    Year number NOT NUll,
+    Year number NOT NUll CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
     Event varchar(50) NOT NUll,
     CONSTRAINT pk_Awards PRIMARY KEY (Year, Event)
 );
