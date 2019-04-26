@@ -33,11 +33,12 @@ create table IMDBPerson(
     LastName varchar(20) NOT NULL,
     Gender char(1) NOT NULL,
     Birthdate date NOT NULL,
-    Nation varchar(50),
-    State varchar(50),
-    Province varchar(50),
-    Town varchar(50),
-    IsMature number(1) DEFAULT 1 NOT NULL
+    Nation varchar(50) NOT NULL,
+    State varchar(50) NOT NULL,
+    Province varchar(50) NOT NULL,
+    Town varchar(50) NOT NULL,
+    IsMature number(1) DEFAULT 1 NOT NULL,
+    Attribute varchar(50) NOT NULL
 );
 /
 create table Guardian(
@@ -71,21 +72,6 @@ create table Marry(
         PRIMARY KEY (IMDBPerson1, IMDBPerson2)
 );
 /
-create table Actor(
-    ID number PRIMARY KEY,
-    CONSTRAINT fk_IMDBPerson
-        FOREIGN KEY(ID)
-        REFERENCES IMDBPerson(ID)
-);
-/
-create table Director(
-    ID number PRIMARY KEY,
-    CONSTRAINT fk_IMDBPerson_Director
-        FOREIGN KEY(ID)
-        REFERENCES IMDBPerson(ID)
-);
-/
-
 create table ProductionCompany(
     Name varchar(50) PRIMARY KEY
 );
@@ -98,9 +84,9 @@ create table Movie(
     DirectorID number NOT NULL,
     ConstractNumber number NOT NULL,
     ProductionCompanyName varchar(50) NOT NULL,
-    CONSTRAINT fk_Director_Movie
+    CONSTRAINT fk_IMDBPerson_Movie
         FOREIGN KEY(DirectorID)
-        REFERENCES Director(ID)
+        REFERENCES IMDBPerson(ID)
     ,
     CONSTRAINT fk_ProductionCompany_Movie
         FOREIGN KEY(ProductionCompanyName)
@@ -165,54 +151,51 @@ create table Episode(
 /
 create table GuestActor(
     Role varchar(50) NOT NULL,
-    Charactor varchar(50) NOT NULL,
     TVSeriesID number NOT NULL,
     NumberOfEp number NOT NULL,
     ActorID number NOT NULL,
-    CONSTRAINT fk_Actor
+    CONSTRAINT fk_IMDBPerson_GuestActor
         FOREIGN KEY(ActorID)
-        REFERENCES Actor(ID)
+        REFERENCES IMDBPerson(ID)
     ,
     CONSTRAINT fk_Episode_GuestActor
         FOREIGN KEY(TVSeriesID,NumberOfEp)
         REFERENCES Episode(TVSeriesID, NumberOfEp)
     ,
     CONSTRAINT pk_GuestActor
-        PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp, Charactor)
+        PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp, Role)
 );
 /
 create table RegularActor(
     Role varchar(50) NOT NULL,
-    Charactor varchar(50) NOT NULL,
     TVSeriesID number NOT NULL,
     ActorID number NOT NULL,
-    CONSTRAINT fk_Actor_RegularActor
+    CONSTRAINT fk_IMDBPerson_RegularActor
         FOREIGN KEY(ActorID)
-        REFERENCES Actor(ID)
+        REFERENCES IMDBPerson(ID)
     ,
     CONSTRAINT fk_TVSeries_RegularActor
         FOREIGN KEY(TVSeriesID)
         REFERENCES TVSeries(ID)
     ,
     CONSTRAINT pk_RegularActor
-        PRIMARY KEY (ActorID, TVSeriesID, Charactor)
+        PRIMARY KEY (ActorID, TVSeriesID, Role)
 );
 /
 create table MovieActor(
     Role  varchar(50) NOT NULL,
-    Charactor varchar(50) NOT NULL,
     MovieID number NOT NULL,
     ActorID number NOT NULL,
-    CONSTRAINT fk_Actor_MovieActor
+    CONSTRAINT fk_IMDBPerson_MovieActor
         FOREIGN KEY(ActorID)
-        REFERENCES Actor(ID)
+        REFERENCES IMDBPerson(ID)
     ,
     CONSTRAINT fk_Movie_MovieActor
         FOREIGN KEY(MovieID)
         REFERENCES Movie(SerialNumber)
     ,
     CONSTRAINT pk_MovieActor 
-        PRIMARY KEY (ActorID, MovieID, Charactor)
+        PRIMARY KEY (ActorID, MovieID, Role)
 );
 /
 create table Picture(
@@ -340,21 +323,16 @@ create table Nominations(
     MovieID number NOT NULL,
     Category varchar(50),
     Win NUMBER(1) DEFAULT 0 NOT NULL,
-    ActorID number, 
-    DirectorID number,
+    PersonID number, 
     AwardYear number NOT NUll,
     AwardEvent varchar(50) NOT NUll,
     CONSTRAINT fk_Moive_Nominations
         FOREIGN KEY(MovieID)
         REFERENCES Movie(SerialNumber)
     ,
-    CONSTRAINT fk_Actor_Nominations
-        FOREIGN KEY(ActorID)
-        REFERENCES Actor(ID)
-    ,
-    CONSTRAINT fk_Director_Nominations
-        FOREIGN KEY(DirectorID)
-        REFERENCES Director(ID)
+    CONSTRAINT fk_MDBPerson_Nominations
+        FOREIGN KEY(PersonID)
+        REFERENCES IMDBPerson(ID)
     ,
     CONSTRAINT fk_Awards_Nominations
         FOREIGN KEY(AwardYear, AwardEvent)
