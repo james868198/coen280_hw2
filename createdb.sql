@@ -327,15 +327,18 @@ create table Nominations(
     ActorID number, 
     DirectorID number,
     Award varchar(100) NOT NULL,
-    CONSTRAINT fk_Moive, NOT NULL,
+    CONSTRAINT fk_Moive NOT NULL,
         FOREIGN KEY(MovieID)
         REFERENCES Movie(SerialNumber)
+    ,
     CONSTRAINT fk_Actor
         FOREIGN KEY(ActorID)
         REFERENCES Actor(ID)
+    ,
     CONSTRAINT fk_Director
         FOREIGN KEY(DirectorID)
         REFERENCES Director(ID)
+    ,
     CONSTRAINT fk_Awards
         FOREIGN KEY(Award)
         REFERENCES Awards(pk_Awards)
