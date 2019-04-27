@@ -80,7 +80,7 @@ create table Movie(
 );
 create table Genre(
     MovieID number NOT NULL,
-    Genre varchar(500) NOT NULL CHECK(Genre = 'Action' AND Genre = 'Drama' AND Genre = 'Comedy'),
+    Genre varchar(500) NOT NULL CHECK(Genre = 'Action' OR Genre = 'Drama' OR Genre = 'Comedy'),
     CONSTRAINT fk_Moive_Genre
         FOREIGN KEY(MovieID)
         REFERENCES Movie(SerialNumber)
