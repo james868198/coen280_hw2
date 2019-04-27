@@ -121,7 +121,7 @@ create table Episode(
         PRIMARY KEY (TVSeriesID, NumberOfEp)
 );
 create table GuestActor(
-    Role varchar(500),
+    Role varchar(500) NOT NULL,
     TVSeriesID number NOT NULL,
     NumberOfEp number NOT NULL,
     ActorID number NOT NULL,
@@ -134,10 +134,10 @@ create table GuestActor(
         REFERENCES Episode(TVSeriesID, NumberOfEp)
     ,
     CONSTRAINT pk_GuestActor
-        PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp)
+        PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp, Role)
 );
 create table RegularActor(
-    Role varchar(500),
+    Role varchar(500) NOT NULL,
     TVSeriesID number NOT NULL,
     ActorID number NOT NULL,
     CONSTRAINT fk_IMDBPerson_RegularActor
@@ -149,10 +149,10 @@ create table RegularActor(
         REFERENCES TVSeries(ID)
     ,
     CONSTRAINT pk_RegularActor
-        PRIMARY KEY (ActorID, TVSeriesID)
+        PRIMARY KEY (ActorID, TVSeriesID, Role)
 );
 create table MovieActor(
-    Role  varchar(500),
+    Role  varchar(500) NOT NULL,
     MovieID number NOT NULL,
     ActorID number NOT NULL,
     CONSTRAINT fk_IMDBPerson_MovieActor
@@ -164,7 +164,7 @@ create table MovieActor(
         REFERENCES Movie(SerialNumber)
     ,
     CONSTRAINT pk_MovieActor 
-        PRIMARY KEY (ActorID, MovieID)
+        PRIMARY KEY (ActorID, MovieID, Role)
 );
 create table Picture(
     PictureUrl number PRIMARY KEY,

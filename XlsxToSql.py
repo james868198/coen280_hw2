@@ -92,10 +92,11 @@ for row in GenreList_temp:
     print(row)
 
 # ActorList
-f.write('--ActorList rows:{}'.format(len(ActorList_temp))+'\n')
-for row in ActorList_temp:
-    f.write(row+'\n')
-    print(row)
+# f.write('--ActorList rows:{}'.format(len(ActorList_temp))+'\n')
+# for row in ActorList_temp:
+#     f.write(row+'\n')
+#     print(row)
+
 # RATING
 rows = RATING.count(axis='rows')['rating']
 f.write('--RATING rows:{}'.format(rows)+'\n')
@@ -110,15 +111,15 @@ for i in range(0,rows):
     f.write(row+'\n')
     print(row)
 
-# ROLES
+# ROLES&ActorList
 rows = ROLES.count(axis='rows')['Role']
 f.write('--ROLE rows:{}'.format(rows)+'\n')
 for i in range(0,rows):
     Person = ROLES.iloc[i]['Person'].replace('P','')
     MID = ROLES.iloc[i]['Movie'].replace('M','')
     Role = ROLES.iloc[i]['Role']
-       
-    row = '''UPDATE MovieActor SET Role = '{}' WHERE ActorID = {} AND MovieID = {};'''.format(Role,Person,MID)
+    row = '''INSERT INTO MovieActor (MOVIEID, ActorID, Role) VALUES ({},{},'{}');'''.format(MID, Person ,Role)
+    # row = '''UPDATE MovieActor SET Role = '{}' WHERE ActorID = {} AND MovieID = {};'''.format(Role,Person,MID)
     f.write(row+'\n')
     print(row)
 f.close()
