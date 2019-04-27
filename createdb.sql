@@ -1,29 +1,10 @@
 -- functions
-create or replace FUNCTION Get_Age(Birthdate IN date)
-RETURN NUMBER IS 
-    age NUMBER := 0;
-BEGIN 
-    SELECT to_number(to_char(sysdate, 'YYYY')) - to_number(to_char(Birthdate, 'YYYY')) 
-    INTO age
-    FROM dual;
-    RETURN age; 
-END;
--- CREATE FUNCTION dbo.vaValidEmail(@EMAIL varchar(100))
--- RETURNS bit as
--- BEGIN     
---   DECLARE @bitRetVal as Bit
---   IF (@EMAIL <> '' AND @EMAIL NOT LIKE '_%@__%.__%')
---      SET @bitRetVal = 0  -- Invalid
---   ELSE 
---     SET @bitRetVal = 1   -- Valid
---   RETURN @bitRetVal
--- END 
-
 -- Assumptions:
 --     TVSeries has ID
 --     There is no ProductionCompany having the same name.
 --     Pictures are all belong to IMDBPersonal if IsProfile is 0
 -- table schemas
+
 create table IMDBUser(
     IMDBID number PRIMARY KEY,
     Email varchar(100) NOT NULL UNIQUE,
