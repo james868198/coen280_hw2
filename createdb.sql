@@ -14,7 +14,7 @@ create table IMDBUser(
     LastName varchar(20) NOT NULL,
     Gender char(1) NOT NULL,
     Birthdate date NOT NULL,
-    Birthplace varchar(50),
+    Birthplace varchar(500),
     Age number NOT NULL CHECK(Age>=0 AND Age <130)
 );
 create table IMDBPerson(
@@ -23,11 +23,11 @@ create table IMDBPerson(
     LastName varchar(20) NOT NULL,
     Gender char(1) NOT NULL,
     Birthdate date NOT NULL,
-    Nation varchar(50),
-    State varchar(50),
-    Town varchar(50),
+    Nation varchar(500),
+    State varchar(500),
+    Town varchar(500),
     IsMature number(1) DEFAULT 1 NOT NULL,
-    Attribute varchar(50) NOT NULL CHECK(Attribute ='Director' OR Attribute ='Actor'),
+    Attribute varchar(500) NOT NULL CHECK(Attribute ='Director' OR Attribute ='Actor'),
     Age number NOT NULL CHECK(Age>=0 AND Age <130)
 );
 create table Guardian(
@@ -60,16 +60,16 @@ create table Marry(
         PRIMARY KEY (IMDBPerson1, IMDBPerson2)
 );
 create table ProductionCompany(
-    Name varchar(50) PRIMARY KEY
+    Name varchar(500) PRIMARY KEY
 );
 create table Movie(
     SerialNumber number PRIMARY KEY,
-    Title varchar(50) NOT NULL,
+    Title varchar(500) NOT NULL,
     ProductionCost number,
     ReleasedYear number NOT NULL CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
     DirectorID number NOT NULL,
     ConstractNumber number NOT NULL,
-    ProductionCompanyName varchar(50) NOT NULL,
+    ProductionCompanyName varchar(500) NOT NULL,
     CONSTRAINT fk_IMDBPerson_Movie
         FOREIGN KEY(DirectorID)
         REFERENCES IMDBPerson(ID)
@@ -78,23 +78,15 @@ create table Movie(
         FOREIGN KEY(ProductionCompanyName)
         REFERENCES ProductionCompany(Name)
 );
-create table ActionMovie(
-    MovieID number PRIMARY KEY,
-    CONSTRAINT fk_Moive_Action
+create table Genre(
+    MovieID number NOT NULL,
+    Genre varchar(500) NOT NULL CHECK(Genre = 'Action' AND Genre = 'Drama' AND Genre = 'Comedy'),
+    CONSTRAINT fk_Moive_Genre
         FOREIGN KEY(MovieID)
         REFERENCES Movie(SerialNumber)
-);
-create table ComedyMovie(
-    MovieID number PRIMARY KEY,
-    CONSTRAINT fk_Moive_Comedy
-        FOREIGN KEY(MovieID)
-        REFERENCES Movie(SerialNumber)
-);
-create table DramaMovie(
-    MovieID number PRIMARY KEY,
-    CONSTRAINT fk_Moive_Drama
-        FOREIGN KEY(MovieID)
-        REFERENCES Movie(SerialNumber)
+    ,
+    CONSTRAINT pk_Genre
+        PRIMARY KEY (MovieID, Genre)
 );
 create table Scenes(
     MovieID number NOT NULL,
@@ -105,19 +97,19 @@ create table Scenes(
 );
 create table TVSeries(
     ID number PRIMARY KEY,
-    Name varchar(50) NOT NULL,
-    TVNetworks varchar(50) NOT NULL,
+    Name varchar NOT NULL,
+    TVNetworks varchar(500) NOT NULL,
     ProductionCost number,
     ReleasedYear number NOT NULL CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
     ConstractNumber number NOT NULL,
-    ProductionCompanyName varchar(50) NOT NULL,
+    ProductionCompanyName varchar(500) NOT NULL,
     CONSTRAINT fk_ProductionCompany_TVSeries
         FOREIGN KEY(ProductionCompanyName)
         REFERENCES ProductionCompany(Name)
 );
 create table Episode(
-    Title varchar(50) NOT NULL,
-    TVNetworks varchar(50) NOT NULL,
+    Title varchar(500) NOT NULL,
+    TVNetworks varchar(500) NOT NULL,
     TVSeriesID number NOT NULL,
     Length timestamp,
     NumberOfEp number NOT NULL,
@@ -129,7 +121,7 @@ create table Episode(
         PRIMARY KEY (TVSeriesID, NumberOfEp)
 );
 create table GuestActor(
-    Role varchar(50),
+    Role varchar(500),
     TVSeriesID number NOT NULL,
     NumberOfEp number NOT NULL,
     ActorID number NOT NULL,
@@ -145,7 +137,7 @@ create table GuestActor(
         PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp)
 );
 create table RegularActor(
-    Role varchar(50),
+    Role varchar(500),
     TVSeriesID number NOT NULL,
     ActorID number NOT NULL,
     CONSTRAINT fk_IMDBPerson_RegularActor
@@ -160,7 +152,7 @@ create table RegularActor(
         PRIMARY KEY (ActorID, TVSeriesID)
 );
 create table MovieActor(
-    Role  varchar(50),
+    Role  varchar(500),
     MovieID number NOT NULL,
     ActorID number NOT NULL,
     CONSTRAINT fk_IMDBPerson_MovieActor
@@ -177,7 +169,7 @@ create table MovieActor(
 create table Picture(
     PictureUrl number PRIMARY KEY,
     AuthorId number NOT NULL,
-    Name varchar(50) NOT NULL,
+    Name varchar(500) NOT NULL,
     Description varchar(200) NOT NULL,
     IsProfile NUMBER(1) DEFAULT 0 NOT NULL,
     CONSTRAINT fk_IMDBUser
@@ -210,7 +202,7 @@ create table MovieRate(
     UserID number NOT NUll,
     MovieID number NOT NUll,
     Rate number NOT NUll,
-    CONSTRAINT chk_MovieRate_range CHECK (Rate>=1 AND Rate<=10 ),
+    CONSTRAINT chk_MovieRate_range CHECK (Rate>=0 AND Rate<=10 ),
     CONSTRAINT fk_IMDBUser_MovieRate
         FOREIGN KEY(UserID)
         REFERENCES IMDBUser(IMDBID)
@@ -282,16 +274,16 @@ create table Comments(
 );
 create table Awards(
     Year number NOT NUll CHECK(Year>1800 AND Year<2020),
-    Event varchar(50) NOT NUll,
+    Event varchar(500) NOT NUll,
     CONSTRAINT pk_Awards PRIMARY KEY (Year, Event)
 );
 create table Nominations(
     MovieID number NOT NULL,
-    Category varchar(50),
+    Category varchar(500),
     Win NUMBER(1) DEFAULT 0 NOT NULL,
     PersonID number, 
     AwardYear number NOT NUll,
-    AwardEvent varchar(50) NOT NUll,
+    AwardEvent varchar(500) NOT NUll,
     CONSTRAINT fk_Moive_Nominations
         FOREIGN KEY(MovieID)
         REFERENCES Movie(SerialNumber)
