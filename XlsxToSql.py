@@ -76,7 +76,7 @@ for i in range(0,rows):
 
     Genres = MOVIE.iloc[i]['Genre'].split(",")
     for Genre in Genres:
-        insertGenre = '''INSERT INTO Genre (MOVIEID, Genre) VALUES ({},'{}');'''.format(SERIALNUMBER, Genre.replace(' ',''))
+        insertGenre = '''INSERT INTO Genre (MOVIEID, Genre) VALUES ({},'{}');'''.format(SERIALNUMBER, Genre.replace(' ','').upper())
         GenreList_temp.append(insertGenre)
 
     ActorList = MOVIE.iloc[i]['Actor List'].split(",")
