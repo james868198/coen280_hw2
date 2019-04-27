@@ -1,0 +1,27 @@
+--26 tables
+drop table  VOTENONHELPFUL		   cascade constraints;
+drop table  VOTEHELPFUL 		   cascade constraints;
+drop table  TVSERIES			   cascade constraints;
+drop table  TVSERIERATE 		   cascade constraints;
+drop table  SCENES			       cascade constraints;
+drop table  REVIEWS			       cascade constraints;
+drop table  REGULARACTOR		   cascade constraints;
+drop table  PROFILEPICTURE		   cascade constraints;
+drop table  PRODUCTIONCOMPANY	   cascade constraints;
+drop table  PICTURE			       cascade constraints;
+drop table  PERSONPICTURE		   cascade constraints;
+drop table  NOMINATIONS 		   cascade constraints;
+drop table  MOVIERATE			   cascade constraints;
+drop table  MOVIEACTOR			   cascade constraints;
+drop table  MOVIE			       cascade constraints;
+drop table  MARRY			       cascade constraints;
+drop table  IMDBUSER			   cascade constraints;
+drop table  IMDBPERSON			   cascade constraints;
+drop table  GUESTACTOR			   cascade constraints;
+drop table  GUARDIAN			   cascade constraints;
+drop table  EPISODE			       cascade constraints;
+drop table  DRAMAMOVIE			   cascade constraints;
+drop table  COMMENTS			   cascade constraints;
+drop table  COMEDYMOVIE 		   cascade constraints;
+drop table  AWARDS			       cascade constraints;
+drop table  ACTIONMOVIE 		   cascade constraints;
