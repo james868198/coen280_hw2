@@ -8,7 +8,6 @@ BEGIN
     FROM dual;
     RETURN age; 
 END;
-/
 -- CREATE FUNCTION dbo.vaValidEmail(@EMAIL varchar(100))
 -- RETURNS bit as
 -- BEGIN     
@@ -299,7 +298,7 @@ create table Comments(
         REFERENCES IMDBUser(IMDBID)
 );
 create table Awards(
-    Year number NOT NUll CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
+    Year number NOT NUll CHECK(Year>1800 AND Year<2020),
     Event varchar(50) NOT NUll,
     CONSTRAINT pk_Awards PRIMARY KEY (Year, Event)
 );
