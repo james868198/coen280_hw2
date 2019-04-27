@@ -3,6 +3,8 @@
 --     TVSeries has ID
 --     There is no ProductionCompany having the same name.
 --     Pictures are all belong to IMDBPersonal if IsProfile is 0
+--     Actors won't play different role in the same movie, episodle or TV Series
+
 -- table schemas
 
 create table IMDBUser(
@@ -127,7 +129,7 @@ create table Episode(
         PRIMARY KEY (TVSeriesID, NumberOfEp)
 );
 create table GuestActor(
-    Role varchar(50) NOT NULL,
+    Role varchar(50),
     TVSeriesID number NOT NULL,
     NumberOfEp number NOT NULL,
     ActorID number NOT NULL,
@@ -140,10 +142,10 @@ create table GuestActor(
         REFERENCES Episode(TVSeriesID, NumberOfEp)
     ,
     CONSTRAINT pk_GuestActor
-        PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp, Role)
+        PRIMARY KEY (ActorID, TVSeriesID, NumberOfEp)
 );
 create table RegularActor(
-    Role varchar(50) NOT NULL,
+    Role varchar(50),
     TVSeriesID number NOT NULL,
     ActorID number NOT NULL,
     CONSTRAINT fk_IMDBPerson_RegularActor
@@ -155,10 +157,10 @@ create table RegularActor(
         REFERENCES TVSeries(ID)
     ,
     CONSTRAINT pk_RegularActor
-        PRIMARY KEY (ActorID, TVSeriesID, Role)
+        PRIMARY KEY (ActorID, TVSeriesID)
 );
 create table MovieActor(
-    Role  varchar(50) NOT NULL,
+    Role  varchar(50),
     MovieID number NOT NULL,
     ActorID number NOT NULL,
     CONSTRAINT fk_IMDBPerson_MovieActor
@@ -170,7 +172,7 @@ create table MovieActor(
         REFERENCES Movie(SerialNumber)
     ,
     CONSTRAINT pk_MovieActor 
-        PRIMARY KEY (ActorID, MovieID, Role)
+        PRIMARY KEY (ActorID, MovieID)
 );
 create table Picture(
     PictureUrl number PRIMARY KEY,
