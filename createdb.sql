@@ -97,7 +97,7 @@ create table Scenes(
 );
 create table TVSeries(
     ID number PRIMARY KEY,
-    Name varchar NOT NULL,
+    Name varchar(500) NOT NULL,
     TVNetworks varchar(500) NOT NULL,
     ProductionCost number,
     ReleasedYear number NOT NULL CHECK(ReleasedYear>1800 AND ReleasedYear<2020),
