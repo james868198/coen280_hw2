@@ -82,3 +82,13 @@ q5.
     ACTORID     FIRSTNAME		    LASTNAME
     ---------- -------------------- --------------------
 	9           Tom			        Hanks
+q6.
+
+q7.
+    ACTORNAME				  ACTRESSNAME				    TOGETHERCOUNTING
+    ----------------------------------------- ----------------------------------------- ----------------
+    Ewan McGregor				  Natalie Portman					   3
+    Freddie Highmore			  Mia Farrow						   2
+    Morgan	Freeman 			  Scarlett  Johanson				   2
+    Hayden Christensen			  Natalie Portman					   2
+    Tom  Hanks				      Jessica  Alba 					   2
