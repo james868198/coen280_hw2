@@ -71,8 +71,14 @@ q3.
 
 
     6 rows selected.
+
 q4.
     FIRSTNAME	     LASTNAME		     ACTORID   COUNTING
     -------------------- -------------------- ---------- ----------
     Harrison	     Ford			  34	      3
     Tom		        Hanks			   9	      3
+
+q5.
+    ACTORID     FIRSTNAME		    LASTNAME
+    ---------- -------------------- --------------------
+	9           Tom			        Hanks
