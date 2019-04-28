@@ -92,3 +92,10 @@ q7.
     Morgan	Freeman 			  Scarlett  Johanson				   2
     Hayden Christensen			  Natalie Portman					   2
     Tom  Hanks				      Jessica  Alba 					   2
+
+q8.
+
+q9.
+    THEABSDIFFERENCE
+    -------------
+    .253903509
