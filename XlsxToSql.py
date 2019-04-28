@@ -106,8 +106,8 @@ for i in range(0,rows):
     MID = RATING.iloc[i]['MID'].replace('M','')
     Rate = float(RATING.iloc[i]['rating'])
     # datetime = str(RATING.iloc[i]['date_year'])+str(RATING.iloc[i]['date_month'])+str(RATING.iloc[i]['date_day'])str(RATING.iloc[i]['date_hour'])+str(RATING.iloc[i]['date_minute'])+str(RATING.iloc[i]['date_second'])
-       
-    row = '''INSERT INTO MovieRate (UserID, MovieID, Rate) VALUES ({},{},{});'''.format(IMDBID,MID,Rate )
+    Year = RATING.iloc[i]['date_year']
+    row = '''INSERT INTO MovieRate (UserID, MovieID, Rate,Year) VALUES ({},{},{},{});'''.format(IMDBID,MID,Rate,Year)
     f.write(row+'\n')
     print(row)
 

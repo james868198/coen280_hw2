@@ -202,6 +202,7 @@ create table MovieRate(
     UserID number NOT NUll,
     MovieID number NOT NUll,
     Rate number NOT NUll,
+    Year number NOT NUll CHECK(Year>1800 AND Year <2020),
     CONSTRAINT chk_MovieRate_range CHECK (Rate>=0 AND Rate<=10 ),
     CONSTRAINT fk_IMDBUser_MovieRate
         FOREIGN KEY(UserID)
