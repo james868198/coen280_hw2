@@ -99,3 +99,15 @@ q9.
     THEABSDIFFERENCE
     -------------
     .253903509
+q10.
+    ACTORID     FIRSTNAME		LASTNAME
+    ---------- -------------------- --------------------
+	18          Jennifer		Lawrence
+	12          Alex 		    Parish
+	10          Jessica		    Alba
+	13          Leonardo		DiCaprio
+	 7          Angelina		Jolie
+	11          Catherine		Jones
+	 3          Scarlett		Johanson
+
+    7 rows selected.
