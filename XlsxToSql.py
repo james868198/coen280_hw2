@@ -29,7 +29,10 @@ for i in range(0,rows):
     LASTNAME = PERSON.iloc[i]['Last Name']
     Gender = PERSON.iloc[i]['Gender']
     BIRTHDATE = PERSON.iloc[i]['birthdate'].strftime("%m/%d/%Y")
-    ISMATURE = 1
+    if 2019 - PERSON.iloc[i]['birthdate'].year>=18:
+        ISMATURE = 1
+    else:
+        ISMATURE = 0
     ATTRIBUTE = PERSON.iloc[i]['Attribute']    
     row = '''INSERT INTO IMDBPerson (ID, FIRSTNAME, LASTNAME,GENDER, BIRTHDATE,ISMATURE,ATTRIBUTE,AGE) VALUES ({},'{}','{}','{}',TO_DATE( '{}', 'MM-DD-YYYY' ),{},'{}', GET_AGE(TO_DATE( '{}', 'MM-DD-YYYY')));'''.format(ID,FIRSTNAME,LASTNAME,Gender,BIRTHDATE,ISMATURE,ATTRIBUTE,BIRTHDATE )
     f.write(row+'\n')
