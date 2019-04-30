@@ -23,3 +23,4 @@ drop table  EPISODE			       cascade constraints;
 drop table  GENRE			       cascade constraints;
 drop table  COMMENTS			   cascade constraints;
 drop table  AWARDS			       cascade constraints;
+drop function GET_AGE;
