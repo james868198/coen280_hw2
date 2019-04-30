@@ -68,7 +68,7 @@ GenreList_temp = []
 ActorList_temp = []
 for i in range(0,rows):
     SERIALNUMBER = MOVIE.iloc[i]['MID'].replace('M','')
-    TITLE = MOVIE.iloc[i]['NAME'].replace("'",'ˋ')
+    TITLE = MOVIE.iloc[i]['NAME'].replace("'",'`')
     RELEASEDYEAR = int(MOVIE.iloc[i]['Release Year'])
     DIRECTORID = MOVIE.iloc[i]['Director'].replace('P','')
     PRODUCTIONCOST = int(random.uniform(10000000, 10000000000))
