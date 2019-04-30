@@ -1,4 +1,4 @@
---26 tables
+--24 tables
 drop table  VOTENONHELPFUL		   cascade constraints;
 drop table  VOTEHELPFUL 		   cascade constraints;
 drop table  TVSERIES			   cascade constraints;
